@@ -7,10 +7,12 @@
 
             {{-- type input // button add --}}
             <div class="flex justify-center items-center  w-full mt-10 gap-4">
-                <x-form.form action="/task" method="POST" class="flex  gap-4 ">
-                    <x-form.input type='text' name="name" placeholder="new task" required />
-                    <x-form.button type="submit" edit>
-                        Add
+                <x-form.form action="/task/{{ $task->id }}" method="POST" class="flex  gap-4 ">
+                    @csrf
+                    @method('PUT')
+                    <x-form.input type='text' name="name" value="{{ old('name', $task->name) }}"  placeholder="new task" required />
+                    <x-form.button type="submit" add>
+                        Edit
                     </x-form.button>
                 </x-form.form>
             </div>
@@ -29,12 +31,10 @@
                                 onclick="this.closest('[data-task]').querySelector('.task-text').classList.toggle('line-through')">
                                 Complete
                             </x-form.button>
-                            <x-form.form edit action="/task/{{ $task->id }}/edit" method="GET" class="inline">
-                                @csrf
-                                <x-form.button edit type="submit" >
-                                    Edit
-                                </x-form.button>
-                            </x-form.form>
+                            <x-form.button edit>
+
+                                Edit
+                            </x-form.button>
                             <x-form.form action="/task/{{ $task->id }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')
