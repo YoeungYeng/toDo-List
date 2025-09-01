@@ -96,7 +96,16 @@ return [
             'search_path' => 'public',
             'sslmode' => 'prefer',
         ],
-
+        'd1' => [
+            'driver' => 'd1',
+            'prefix' => '',
+            'database' => env('CLOUDFLARE_D1_DATABASE_ID', ''),
+            'api' => 'https://api.cloudflare.com/client/v4',
+            'auth' => [
+                'token' => env('CLOUDFLARE_TOKEN', ''),
+                'account_id' => env('CLOUDFLARE_ACCOUNT_ID', ''),
+            ],
+        ],
         'sqlsrv' => [
             'driver' => 'sqlsrv',
             'url' => env('DB_URL'),
@@ -147,7 +156,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix' => env('REDIS_PREFIX', Str::slug((string) env('APP_NAME', 'laravel')).'-database-'),
+            'prefix' => env('REDIS_PREFIX', Str::slug((string) env('APP_NAME', 'laravel')) . '-database-'),
             'persistent' => env('REDIS_PERSISTENT', false),
         ],
 
