@@ -9,6 +9,7 @@ class Task extends Model
 {
     /** @use HasFactory<\Database\Factories\TaskControllerFactory> */
     use HasFactory;
+    protected $connection = 'd1';
     protected $table = 'tasks';
     protected $fillable = ['name'];
    
