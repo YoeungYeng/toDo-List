@@ -1,7 +1,8 @@
 @props(['complete' => false, 'delete' => false, 'edit' => false, 'add' => false, ])
 
 @php
-    $base = 'text-white transition duration-100 w-full cursor-pointer rounded-xl py-2 px-4 font-bold';
+    $base = 'text-white transition duration-100 w-full cursor-pointer rounded-xl 
+            px-3 py-2 sm:text-xs md:text-lg md:font-bold';
     if ($complete) {
         $class = 'bg-green-800 hover:bg-green-500 ' . $base;
     } elseif ($delete) {

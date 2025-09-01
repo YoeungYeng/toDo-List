@@ -18,28 +18,44 @@
                 Task List
             </x-page-heading>
             {{-- list of tasks --}}
-            <div class="flex flex-col space-y-3 w-full">
+            <div
+                class="flex justify-between   flex-col space-y-3 w-full gap-4  p-2 rounded shadow">
                 @foreach ($tasks as $task)
-                    <div data-task class="flex justify-between items-center p-4 rounded">
+                    <div data-task class="flex justify-between items-center p-3 rounded gap-4 md:gap-0 shadow">
 
-                        <p class="task-text text-white font-bold"> {{ $task->name }} </p>
+                        <div class="flex gap-4 items-center">
+                            {{-- Task text --}}
+                        <p
+                            class="task-text text-white font-battambang sm:font-light sm:text-xs md:font-bold md:text-xl">
+                            {{ $task->name }}
+                        </p>
+                        </div>
 
-                        <div class="flex gap-2">
+                        {{-- Buttons --}}
+                        <div class="flex gap-2 justify-between items-center">
+                            {{-- Complete --}}
                             <x-form.button complete
                                 onclick="this.closest('[data-task]').querySelector('.task-text').classList.toggle('line-through')">
-                                Complete
+                                <span class="hidden sm:inline">Complete</span>
+                                <span class="sm:hidden">✔️</span>
                             </x-form.button>
+
+                            {{-- Edit --}}
                             <x-form.form edit action="/task/{{ $task->id }}/edit" method="GET" class="inline">
                                 @csrf
-                                <x-form.button edit type="submit" >
-                                    Edit
+                                <x-form.button edit type="submit">
+                                    <span class="hidden sm:inline">Edit</span>
+                                    <span class="sm:hidden">✏️</span>
                                 </x-form.button>
                             </x-form.form>
+
+                            {{-- Delete --}}
                             <x-form.form action="/task/{{ $task->id }}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')
                                 <x-form.button delete type="submit">
-                                    Delete
+                                    <span class="hidden sm:inline">Delete</span>
+                                    <span class="sm:hidden">🗑️</span>
                                 </x-form.button>
                             </x-form.form>
                         </div>
@@ -47,5 +63,6 @@
                     </div>
                 @endforeach
             </div>
+
     </x-panel>
 </x-layout>
