@@ -10,7 +10,7 @@ class TaskControllerController extends Controller
     // index
     public function index()
     {
-        $tasks = Task::orderBy('created_at', 'asc')->get();
+        $tasks = Task::all();
         return view('toDoList.index', compact('tasks'));
     }
 
@@ -39,7 +39,7 @@ class TaskControllerController extends Controller
     public function edit($id)
     {
         $task = Task::findOrFail($id);
-        $tasks = Task::orderBy('created_at', 'asc')->get();
+        $tasks = Task::all();
         return view('toDoList.edit', compact('tasks', 'task'));
     }
     // update
